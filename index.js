@@ -8,6 +8,7 @@ class WxAuth extends WxBase{
 
   *getAuthUrl(redirectUrl, state, moreInfo){
     var scope = moreInfo?'snsapi_userinfo':'snsapi_base';
+    state = state || '';
     var redirect_uri = escape(redirectUrl);
     var url = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${this.appId}&redirect_uri=${redirect_uri}&response_type=code&scope=${scope}&state=${state}#wechat_redirect`;
     return url;
