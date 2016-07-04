@@ -17,22 +17,26 @@ class WxAuth extends WxBase{
   *getAuthToken(code){
     var url = `https://api.weixin.qq.com/sns/oauth2/access_token?appid=${this.appId}&secret=${this.appSecret}&code=${code}&grant_type=authorization_code`;
     var result = yield this.jsonRequest(url, 'GET');
+    return result;
   }
 
   *getUserInfo(token, openid, lang){
     if ( !lang ) lang = 'zh_CN';
     var url = `https://api.weixin.qq.com/sns/userinfo?access_token=${token}&openid=${openid}&lang=${lang}`;
     var result = yield this.jsonRequest(url, 'GET');
+    return result;
   }
 
   *verifyToken(token, openid){
     var url = `https://api.weixin.qq.com/sns/auth?access_token=${token}&openid=${openid}`;
     var result = yield this.jsonRequest(url, 'GET');
+    return result;
   }
 
   *refreshToken(refreshToken){
     var url = `https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=${this.appId}&grant_type=refresh_token&refresh_token=${refreshToken}`;
     var result = yield this.jsonRequest(url, 'GET');
+    return result;
   }
 }
 
